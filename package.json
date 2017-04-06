@@ -1,6 +1,7 @@
 {
   "name": "linebot",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "directories": {
     "example": "examples"
@@ -22,6 +23,5 @@
   "bugs": {
     "url": "https://github.com/MingtseChen/LineBot_JS/issues"
   },
-  "homepage": "https://github.com/MingtseChen/LineBot_JS#readme",
-  "description": ""
+  "homepage": "https://github.com/MingtseChen/LineBot_JS#readme"
 }
