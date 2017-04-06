@@ -1,6 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
-var bot = require('setting.js');
+var setting = require('setting.js');
 /*
 var bot = linebot({
     channelId: '1508877129',
@@ -11,7 +11,7 @@ var bot = linebot({
 bot.on('message', function(event) {
     console.log(event); //把收到訊息的 event 印出來看看
 });*/
-bot.on('message', function(event) {
+setting.bot.on('message', function(event) {
 	console.log(event);
 	event.reply(event.message.text).then(function(data) {
 		console.log('Success', data);
@@ -22,7 +22,7 @@ bot.on('message', function(event) {
 
 
 const app = express();
-const linebotParser = bot.parser();
+const linebotParser = setting.bot.parser();
 app.post('/', linebotParser);
 
 //因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
