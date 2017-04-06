@@ -6,9 +6,16 @@ var bot = linebot({
     channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
     channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
 });
-
+/*
 bot.on('message', function(event) {
     console.log(event); //把收到訊息的 event 印出來看看
+});*/
+bot.on('message', function (event) {
+	event.reply(event.message.text).then(function (data) {
+		console.log('Success', data);
+	}).catch(function (error) {
+		console.log('Error', error);
+	});
 });
 
 bot.listen('/linewebhook', 3000);
