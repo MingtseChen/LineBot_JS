@@ -28,8 +28,3 @@ var server = app.listen(process.env.PORT || 8080, function() {
     var port = server.address().port;
     console.log("App now running on port", port);
 });
-/*
-const app = express();
-const linebotParser = bot.parser();
-app.post('/linewebhook', linebotParser);
-app.listen(3000);*/
