@@ -27,11 +27,14 @@ bot.on('message', function(event) {
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
-	console.log(event);
-	event.reply(uid + ' : ' + event.message.text).then(function(data) {
-		console.log('Success', data);
+	var name = function(profile){
+		return profile.displayName;
+	};
+	//console.log(event);
+	event.reply(name + ' : ' + event.message.text).then(function(data) {
+		//console.log('Success', data);
 	}).catch(function(error) {
-		console.log('Error', error);
+		//console.log('Error', error);
 	});
 });
 
