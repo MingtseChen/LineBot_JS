@@ -1,5 +1,6 @@
 var request = require('request');
 var jsonQuery = require('json-query');
+var rplyString;
 
 exports.weather = function() {
 	this.inputTrim = function(inStr) {
@@ -88,11 +89,17 @@ function getCurrentWeather(ct, dt) {
 					var resultAt = jsonQuery('', {
 						data: data
 					}).value.at;
-					console.log(ct + dt);
-					console.log(resultDesc);
-					console.log(resultTemp.slice(0, 2) + "~" + resultTemp.slice(2) + " C");
-					console.log(resultRf + "%");
-					console.log(resultAt);
+					// console.log(ct + dt);
+					// console.log(resultDesc);
+					// console.log(resultTemp.slice(0, 2) + "~" + resultTemp.slice(2) + " C");
+					// console.log(resultRf + "%");
+					// console.log(resultAt);
+					rplyString = ct + dt + "\n" +
+								 resultTemp + ' °C '+
+								 resultDesc + "\n" +
+								 '降雨機率 : ' + resultRf+ "%\n"+
+								 "Time : " + resultAt;
+					console.log(rplyString);
 				});
 			} catch (err) {
 				console.log('Get Data Err \n ', err);
