@@ -17,7 +17,7 @@ function getCurrentWeather(location){
 
 
 request({
-	uri:'https://works.ioa.tw/weather/api/weathers/1.json',
+	uri:'https://works.ioa.tw/weather/api/weathers/15.json',
 	method:'GET',
 	timeut:'10000'
 }, function(error, response, body) {
