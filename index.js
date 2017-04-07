@@ -31,9 +31,9 @@ bot.on('message', function(event) {
 	}).catch(function(error) {
 		// error
 	});
-	console.log('=========E=V=E=N=T===========');
-	console.log(event);
-	console.log('=========E=V=E=N=T===========');
+	//console.log('=========E=V=E=N=T===========');
+	//console.log(event);
+	//console.log('=========E=V=E=N=T===========');
 });
 
 
