@@ -27,8 +27,9 @@ bot.on('message', function(event) {
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
-	event.source.profile(function(profile){
-		var name = profile.displayName;
+	var name;
+	event.source.profile(function(profile) {
+		name = profile.displayName;
 	});
 	//console.log(event);
 	event.reply(name + ' : ' + event.message.text).then(function(data) {
