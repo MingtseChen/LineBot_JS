@@ -1,10 +1,6 @@
 var request = require('request');
 var jsonQuery = require('json-query');
 
-var DstringCity = '屏東縣@屏東市';
-
-//trimInput(DstringCity);
-
 exports.weather = function() {
 	this.inputTrim = function(inStr) {
 		var passflag = false;
@@ -51,8 +47,9 @@ exports.weather = function() {
 		} else {
 			console.log('invalid : need spec char');
 		}
+		return 0;
 	};
-
+	return 0;
 };
 
 function getCurrentWeather(ct, dt) {
@@ -105,4 +102,5 @@ function getCurrentWeather(ct, dt) {
 		}
 		console.log('Success Get Replied : End Weather Func');
 	});
+	return 0;
 }

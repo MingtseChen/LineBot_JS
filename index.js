@@ -33,8 +33,11 @@ bot.on('message', function(event) {
 
 
 var DstringCity = '台北@中正區';
+var DstringCity2 = '台北dddddd@中正區';
+var DstringCity3 = '台北savavav@中正區';
 
 tools.inputTrim(DstringCity);
+tools.inputTrim(DstringCity2);
 
 
 //end
