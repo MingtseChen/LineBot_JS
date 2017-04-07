@@ -30,20 +30,20 @@ bot.on('message', function(event) {
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply(profile.displayName + ' : ' + event.message.text).then(function(data) {
-			console.log('=============================');
 			console.log('Reply Success');
+			console.log('=======E====N=====D==========');
 		}).catch(function(error) {
-			console.log('=============================');
 			console.log('Reply Error : ', error);
+			console.log('=======E====N=====D==========');
 		});
 		console.log("User Name : " + profile.displayName);
-		
+
 	}).catch(function(error) {
 		// error
 	});
-	console.log('=========E=V=E=N=T======s====');
+	console.log('=========E=V=E=N=T===========');
 	console.log(event);
-	console.log('=========E=V=E=N=T======e====');
+	console.log('=========E=V=E=N=T===========');
 });
 
 //end
