@@ -19,6 +19,7 @@ bot.on('message', function(event) {
 		event.reply(profile.displayName + ' : \n' + menu + mWeather /* + event.message.text*/ ).then(function(data) {
 			if(event.message.text == '1'){
 				event.reply('1');
+				tools.inputTrim(event.message.text);
 			}
 			//console.log('Reply Success');
 			//console.log('=======E====N=====D==========');
@@ -38,7 +39,7 @@ bot.on('message', function(event) {
 
 //var DstringCity = '台北@中正區';
 
-tools.inputTrim(DstringCity);
+
 
 //end
 
