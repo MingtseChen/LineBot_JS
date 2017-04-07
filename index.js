@@ -8,13 +8,11 @@ var bot = linebot({
 });
 
 
+bot.on('user',function(event){
+	console.log('UID' + event.source.userId);
+});
+
 bot.on('message', function(event) {
-	event.source.profile().then(function(profile) {
-		event.reply('Hello ' + profile.displayName);
-		console.log('UID', profile.displayName);
-	}).catch(function(error) {
-		console.log('Error', error);
-	});
 	console.log(event);
 	event.reply(event.message.text).then(function(data) {
 		console.log('Success', data);
