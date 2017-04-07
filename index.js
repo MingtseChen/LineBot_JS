@@ -27,7 +27,7 @@ bot.on('message', function(event) {
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
-	var name = bot.getUserProfile(uid);
+	var name = event.getUserProfile(uid);
 	//console.log(event);
 	event.reply(name + ' : ' + event.message.text).then(function(data) {
 		//console.log('Success', data);
