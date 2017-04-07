@@ -7,13 +7,13 @@ var bot = linebot({
 	channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
 });
 
-
+/*
 setTimeout(function(){
     var userId = 'U9539bade81b0b8581173f6ab7bbe5b0c';
     var sendMsg = '要發送的文字';
     bot.push(userId,sendMsg);
     console.log('send: '+sendMsg);
-},5000);
+},1000);*/
 /*
 bot.on('message', function(event) {
 	console.log('UID : ' + event.source.userId); //user id
@@ -26,8 +26,9 @@ bot.on('message', function(event) {
 });*/
 
 bot.on('message', function(event) {
+	var uid = event.source.userId;
 	console.log(event);
-	event.reply(event.message.text).then(function(data) {
+	event.reply(uid + ' : ' + event.message.text).then(function(data) {
 		console.log('Success', data);
 	}).catch(function(error) {
 		console.log('Error', error);
