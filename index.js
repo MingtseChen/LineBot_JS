@@ -27,11 +27,6 @@ bot.on('message', function(event) {
 	});
 });
 
-bot.on('message', function (event) {
-	event.reply('join: ' + event.source.groupId);
-	console.log('!!!!!!!!!!!!!!!!!!!');
-});
-
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
