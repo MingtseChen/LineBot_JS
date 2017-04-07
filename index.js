@@ -24,15 +24,16 @@ bot.on('message', function(event) {
 		console.log('Get ID Error',error); //error
 	});
 });*/
+bot.on('user',function(event){
+	event.source.profile(function(profile){
+		event.reply('Hello' + profile.displayName);
+	})
+});
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
-	var name;
-	event.source.profile(function(profile) {
-		name = profile.displayName;
-	});
 	//console.log(event);
-	event.reply(name + ' : ' + event.message.text).then(function(data) {
+	event.reply(uid + ' : ' + event.message.text).then(function(data) {
 		//console.log('Success', data);
 	}).catch(function(error) {
 		//console.log('Error', error);
