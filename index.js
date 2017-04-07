@@ -1,12 +1,13 @@
 var linebot = require('linebot');
 var express = require('express');
-
+//config
 var bot = linebot({
 	channelId: '1508877129',
 	channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
 	channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
 });
 
+//start
 /*
 setTimeout(function(){
     var userId = 'U9539bade81b0b8581173f6ab7bbe5b0c';
@@ -27,16 +28,25 @@ bot.on('message', function(event) {
 //var name = bot.getUserProfile(event.source.userId);
 
 bot.on('message', function(event) {
+	event.source.profile().then(function(profile) {
+		event.reply('Hello ' + profile.displayName);
+	}).catch(function(error) {
+		// error
+	});
 	var uid = event.source.userId;
-	var name = event.source.profile;
+	//var name = event.source.profile;
 	//var name = event.getUserProfile(uid);
 	//console.log(event);
-	event.reply(name + ' : ' + event.message.text).then(function(data) {
+	event.reply(profile.displayName + ' : ' + event.message.text).then(function(data) {
 		//console.log('Success', data);
 	}).catch(function(error) {
 		//console.log('Error', error);
 	});
 });
+
+//end
+
+//footer (port changer)
 
 const app = express();
 const linebotParser = bot.parser();
