@@ -30,6 +30,7 @@ bot.on('message', function(event) {
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply('Hello ' + profile.displayName);
+		console.log(profile.displayName);
 	}).catch(function(error) {
 		// error
 	});
