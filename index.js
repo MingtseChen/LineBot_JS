@@ -27,12 +27,9 @@ bot.on('message', function(event) {
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
-	event.source.profile(function(profile) {
-		event.reply('Hello' + profile.displayName);
-	});
-	console.log(profile.displayName);
+	var name = bot.getUserProfile(uid);
 	//console.log(event);
-	event.reply(uid + ' : ' + event.message.text).then(function(data) {
+	event.reply(name + ' : ' + event.message.text).then(function(data) {
 		//console.log('Success', data);
 	}).catch(function(error) {
 		//console.log('Error', error);
