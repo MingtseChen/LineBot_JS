@@ -3,55 +3,57 @@ var jsonQuery = require('json-query');
 
 var DstringCity = '屏東縣@屏東市';
 
-trimInput(DstringCity);
+//trimInput(DstringCity);
 
-function trimInput(inStr) {
-	var passflag = false;
-	var getStringRAW = inStr.trim();
-	var city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
-	if (getStringRAW.includes('@')) {
-		console.log("Raw : ", getStringRAW);
-		if (city.includes("市")) {
-			city = city.replace("市", "");
-		} else if (city.includes("縣")) {
-			city = city.replace("縣", "");
-		}
-		console.log("City : " + city);
-		var dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
-		console.log("Dist : " + dist);
-		//console.log("Clean String, Load Query");
-		request({
-			uri: 'https://works.ioa.tw/weather/api/all.json',
-			method: 'GET',
-			timeut: '10000'
-		}, function(error, response, body) {
-			if (response.statusCode == 200) {
-				console.log('Access...'); // Print the response status code if a response was received
-				var fetchCt = JSON.parse(body);
-				for (i = 0; i < 22; i++) {
-					//console.log(fetchCt[i].name);
-					var k = 0;
-					if (fetchCt[i].name == city) {
-						for (j = 0; j < fetchCt[i].towns.length; j++) {
-							//console.log(fetchCt[i].towns[k].name);
-							if (fetchCt[i].towns[k].name == dist) {
-								passflag = true;
-								getCurrentWeather(city, dist);
+exports.weather = function() {
+	this.inputTrim = function(inStr) {
+		var passflag = false;
+		var getStringRAW = inStr.trim();
+		var city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
+		if (getStringRAW.includes('@')) {
+			console.log("Raw : ", getStringRAW);
+			if (city.includes("市")) {
+				city = city.replace("市", "");
+			} else if (city.includes("縣")) {
+				city = city.replace("縣", "");
+			}
+			console.log("City : " + city);
+			var dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
+			console.log("Dist : " + dist);
+			//console.log("Clean String, Load Query");
+			request({
+				uri: 'https://works.ioa.tw/weather/api/all.json',
+				method: 'GET',
+				timeut: '10000'
+			}, function(error, response, body) {
+				if (response.statusCode == 200) {
+					console.log('Access...'); // Print the response status code if a response was received
+					var fetchCt = JSON.parse(body);
+					for (i = 0; i < 22; i++) {
+						//console.log(fetchCt[i].name);
+						var k = 0;
+						if (fetchCt[i].name == city) {
+							for (j = 0; j < fetchCt[i].towns.length; j++) {
+								//console.log(fetchCt[i].towns[k].name);
+								if (fetchCt[i].towns[k].name == dist) {
+									passflag = true;
+									getCurrentWeather(city, dist);
+								}
+								k++;
 							}
-							k++;
 						}
 					}
+				} else {
+					console.log('Connect Api Error:', error); // Print the error if one occurred
 				}
-			} else {
-				console.log('Connect Api Error:', error); // Print the error if one occurred
-			}
-			console.log('Query Status : ', passflag);
-			console.log('Success Get Replied : End Weather Func');
-		});
-	} else {
-		console.log('invalid : need spec char');
-	}
-}
+				console.log('Query Status : ', passflag);
+			});
+		} else {
+			console.log('invalid : need spec char');
+		}
+	};
+
+};
 
 function getCurrentWeather(ct, dt) {
 	var dIndex;
@@ -95,14 +97,9 @@ function getCurrentWeather(ct, dt) {
 					console.log(resultRf + "%");
 					console.log(resultAt);
 				});
-
 			} catch (err) {
 				console.log('Get Data Err \n ', err);
 			}
-			//console.log(data[0]);
-			//console.log('-----------------------------------');
-			//console.log(dIndex);
-
 		} else {
 			console.log('Connect Api Error:', error); // Print the error if one occurred
 		}
