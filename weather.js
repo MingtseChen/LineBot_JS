@@ -95,10 +95,10 @@ function getCurrentWeather(ct, dt) {
 					// console.log(resultRf + "%");
 					// console.log(resultAt);
 					rplyString = ct + dt + "\n" +
-								 resultTemp + ' °C '+
-								 resultDesc + "\n" +
-								 '降雨機率 : ' + resultRf+ "%\n"+
-								 "Time : " + resultAt;
+						resultTemp.slice(0, 2) + "~" + resultTemp.slice(2) + ' °C ' +
+						resultDesc + "\n" +
+						'降雨機率 : ' + resultRf + "%\n" +
+						"Time : " + resultAt;
 					console.log(rplyString);
 				});
 			} catch (err) {
@@ -109,5 +109,5 @@ function getCurrentWeather(ct, dt) {
 		}
 		console.log('Success Get Replied : End Weather Func');
 	});
-	return 0;
+	return rplyString;
 }
