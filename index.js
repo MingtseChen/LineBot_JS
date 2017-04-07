@@ -11,10 +11,9 @@ var bot = linebot({
 bot.on('message', function(event) {
     console.log(event); //把收到訊息的 event 印出來看看
 });*/
-var uid = event.source.profile();
 bot.on('message', function(event) {
 	console.log(event);
-	event.reply(event.message.text + uid.displayName).then(function(data) {
+	event.reply(event.message.text + event.displayName).then(function(data) {
 		console.log('Success', data);
 	}).catch(function(error) {
 		console.log('Error', error);
