@@ -27,9 +27,9 @@ bot.on('message', function(event) {
 	});
 });
 
-bot.on('join', function (event) {
+bot.on('message', function (event) {
 	event.reply('join: ' + event.source.groupId);
-	console.log('join');
+	console.log('!!!!!!!!!!!!!!!!!!!');
 });
 
 const app = express();
