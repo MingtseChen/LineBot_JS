@@ -1,19 +1,24 @@
 var request = require('request');
 var jsonQuery = require('json-query');
 var stringCity = '台北';
-var DstringCity = '   台北市@中正區   ';
-var DstringCity = '   台北市@中正區   ';
+var DstringCity = '台北市@中正區';
+var DstringCity = '台北市@中正區';
 var stringCounty1 = '中正區';
 
 trimInput(DstringCity);
 
 function trimInput(inStr) {
 	var getStringRAW = inStr.trim();
-	console.log(getStringRAW);
-	var city = getStringRAW.slice(0, getStringRAW.indexOf("@")-1);
-	console.log(city);
+	console.log("Raw : " + getStringRAW);
+	if (getStringRAW.includes("市")) {
+		var city = getStringRAW.replace("市", "");
+	} else if (getStringRAW.includes("縣")) {
+		var city = getStringRAW.replace("縣", "");
+	}
+	var city = city.slice(0, city.indexOf("@"));
+	console.log("City : " + city);
 	var dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
-	console.log(dist);
+	console.log("Dist : " + dist);
 }
 
 
