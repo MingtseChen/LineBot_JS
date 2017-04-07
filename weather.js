@@ -27,24 +27,24 @@ function trimInput(inStr) {
 		console.log('invalid : need spec char');
 	}
 }
+
 function getCurrentWeather(ct, dt) {
-	try {
-		request({
-			uri: 'https://works.ioa.tw/weather/api/all.json',
-			method: 'GET',
-			timeut: '10000'
-		}, function(error, response, body) {
-			if (response.statusCode == 200) {
-				console.log('Get Data Success', response && response.statusCode); // Print the response status code if a response was received
-				var data = JSON.parse(body);
-				//console.log(data[0].towns[1].name);
-				var query = '[*][*][name =' + ct + '][*towns][name = ' + dt + ']';
-				var dIndex = jsonQuery(query, {
+	var dIndex;
+	request({
+		uri: 'https://works.ioa.tw/weather/api/all.json',
+		method: 'GET',
+		timeut: '10000'
+	}, function(error, response, body) {
+		if (response.statusCode == 200) {
+			console.log('Get Data Success', response && response.statusCode); // Print the response status code if a response was received
+			var data = JSON.parse(body);
+			//console.log(data[0].towns[1].name);
+			var query = '[*][*][name =' + ct + '][*towns][name = ' + dt + ']';
+			try {
+				dIndex = jsonQuery(query, {
 					data: data
 				}).value.id;
-				//console.log(data[0]);
-				//console.log('-----------------------------------');
-				//console.log(dIndex);
+
 				request({
 					uri: 'https://works.ioa.tw/weather/api/weathers/' + dIndex + '.json',
 					method: 'GET',
@@ -70,12 +70,17 @@ function getCurrentWeather(ct, dt) {
 					console.log(resultRf + "%");
 					console.log(resultAt);
 				});
-			} else {
-				console.log('Connect Api Error:', error); // Print the error if one occurred
+
+			} catch (err) {
+				console.log('Get Data Err \n ', err);
 			}
-			console.log('Success Get Replied : End Weather Func');
-		});
-	} catch (error) {
-		console.log('Error', error);
-	}
+			//console.log(data[0]);
+			//console.log('-----------------------------------');
+			//console.log(dIndex);
+
+		} else {
+			console.log('Connect Api Error:', error); // Print the error if one occurred
+		}
+		console.log('Success Get Replied : End Weather Func');
+	});
 }
