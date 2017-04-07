@@ -8,14 +8,15 @@ var stringCounty1 = '中正區';
 trimInput(DstringCity);
 
 function trimInput(inStr) {
+	var city;
 	var getStringRAW = inStr.trim();
 	console.log("Raw : " + getStringRAW);
 	if (getStringRAW.includes("市")) {
-		var city = getStringRAW.replace("市", "");
+		city = getStringRAW.replace("市", "");
 	} else if (getStringRAW.includes("縣")) {
-		var city = getStringRAW.replace("縣", "");
+		city = getStringRAW.replace("縣", "");
 	}
-	var city = city.slice(0, city.indexOf("@"));
+	city = city.slice(0, city.indexOf("@"));
 	console.log("City : " + city);
 	var dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
 	console.log("Dist : " + dist);
