@@ -36,7 +36,6 @@ bot.on('message', function(event) {
 			console.log('=============================');
 			console.log('Error', error);
 		});
-		//event.reply('Hello ' + profile.displayName);
 		console.log(profile.displayName);
 		console.log('=============================');
 	}).catch(function(error) {
@@ -45,7 +44,7 @@ bot.on('message', function(event) {
 	var uid = event.source.userId;
 	//var name = event.source.profile;
 	//var name = event.getUserProfile(uid);
-	//console.log(event);
+	console.log(event);
 
 });
 
