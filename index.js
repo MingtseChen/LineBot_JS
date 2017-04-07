@@ -10,6 +10,13 @@ var bot = linebot({
 bot.on('message', function(event) {
     console.log(event); //把收到訊息的 event 印出來看看
 });*/
+event.source.profile().then(function(profile) {
+	event.reply('Hello ' + profile.displayName);
+	console.log('UID', profile.displayName);
+}).catch(function(error) {
+	console.log('Error', error);
+});
+
 bot.on('message', function(event) {
 	console.log(event);
 	event.reply(event.message.text).then(function(data) {
