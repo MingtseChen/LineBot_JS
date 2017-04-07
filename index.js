@@ -12,17 +12,18 @@ var bot = linebot({
 });
 
 //start
-
+var menu = 'Hello Im Chatta U can ask me : \n';
+var mWeather = '1. Weather';
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
-		event.reply(profile.displayName + ' : ' + event.message.text).then(function(data) {
-			console.log('Reply Success');
-			console.log('=======E====N=====D==========');
+		event.reply(profile.displayName + ' : \n' + menu + mWeather /* + event.message.text*/ ).then(function(data) {
+			//console.log('Reply Success');
+			//console.log('=======E====N=====D==========');
 		}).catch(function(error) {
-			console.log('Reply Error : ', error);
-			console.log('=======E====N=====D==========');
+			//console.log('Reply Error : ', error);
+			//console.log('=======E====N=====D==========');
 		});
-		console.log("User Name : " + profile.displayName);
+		//console.log("User Name : " + profile.displayName);
 	}).catch(function(error) {
 		// error
 	});
