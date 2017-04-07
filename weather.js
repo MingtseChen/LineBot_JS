@@ -1,17 +1,16 @@
 var request = require('request');
 var jsonQuery = require('json-query');
 
-var stringCity = '台北';
 var DstringCity = '屏東縣@屏東市';
-var stringCounty1 = '中正區';
 
 trimInput(DstringCity);
 
 function trimInput(inStr) {
+	var passflag = false;
 	var getStringRAW = inStr.trim();
 	var city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
 	if (getStringRAW.includes('@')) {
-		console.log("Raw : " + getStringRAW);
+		console.log("Raw : ", getStringRAW);
 		if (city.includes("市")) {
 			city = city.replace("市", "");
 		} else if (city.includes("縣")) {
@@ -30,23 +29,25 @@ function trimInput(inStr) {
 				console.log('Access...'); // Print the response status code if a response was received
 				var fetchCt = JSON.parse(body);
 				for (i = 0; i < 22; i++) {
-					console.log(fetchCt[i].name);
-					console.log(fetchCt[i].towns.length);
-					var k=1;
-					for (j = 0; j < fetchCt[i].towns.length; j++) {
-						console.log(k);
-						console.log(fetchCt[i].towns[1].name);
-						k++;
+					//console.log(fetchCt[i].name);
+					var k = 0;
+					if (fetchCt[i].name == city) {
+						for (j = 0; j < fetchCt[i].towns.length; j++) {
+							//console.log(fetchCt[i].towns[k].name);
+							if (fetchCt[i].towns[k].name == dist) {
+								passflag = true;
+								getCurrentWeather(city, dist);
+							}
+							k++;
+						}
 					}
 				}
-				//for (i = 0; i < 22; i++)
-				//console.log(fetchCt[0].towns[1].name);
 			} else {
 				console.log('Connect Api Error:', error); // Print the error if one occurred
 			}
+			console.log('Query Status : ', passflag);
 			console.log('Success Get Replied : End Weather Func');
 		});
-		//getCurrentWeather(city, dist);
 	} else {
 		console.log('invalid : need spec char');
 	}
@@ -88,7 +89,7 @@ function getCurrentWeather(ct, dt) {
 					var resultAt = jsonQuery('', {
 						data: data
 					}).value.at;
-					console.log(stringCity + stringCounty1);
+					console.log(ct + dt);
 					console.log(resultDesc);
 					console.log(resultTemp.slice(0, 2) + "~" + resultTemp.slice(2) + " C");
 					console.log(resultRf + "%");
