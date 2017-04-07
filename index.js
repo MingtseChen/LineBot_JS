@@ -1,7 +1,6 @@
 var linebot = require('linebot');
 var express = require('express');
-var setting = require('/setting.js');
-/*
+
 var bot = linebot({
 	channelId: '1508877129',
 	channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
