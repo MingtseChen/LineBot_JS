@@ -13,7 +13,10 @@ bot.on('message', function(event) {
 });*/
 bot.on('message', function(event) {
 	console.log(event);
-	event.reply(event.message.text + event.displayName).then(function(data) {
+	event.source.profile().then(function (profile){
+		console.log('Profile', profile);
+	}
+	event.reply(event.message.text).then(function(data) {
 		console.log('Success', data);
 	}).catch(function(error) {
 		console.log('Error', error);
