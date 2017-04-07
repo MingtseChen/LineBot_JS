@@ -24,10 +24,12 @@ bot.on('message', function(event) {
 		console.log('Get ID Error',error); //error
 	});
 });*/
+var name = bot.getUserProfile(event.source.userId);
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
-	var name = event.getUserProfile(uid);
+	var name = event.source.profile;
+	//var name = event.getUserProfile(uid);
 	//console.log(event);
 	event.reply(name + ' : ' + event.message.text).then(function(data) {
 		//console.log('Success', data);
