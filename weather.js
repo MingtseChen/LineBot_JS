@@ -2,27 +2,51 @@ var request = require('request');
 var jsonQuery = require('json-query');
 
 var stringCity = '台北';
-var DstringCity = '台北ssss@中正區';
+var DstringCity = '屏東縣@屏東市';
 var stringCounty1 = '中正區';
 
 trimInput(DstringCity);
 
 function trimInput(inStr) {
-	var city;
 	var getStringRAW = inStr.trim();
+	var city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
 	if (getStringRAW.includes('@')) {
 		console.log("Raw : " + getStringRAW);
-		if (getStringRAW.includes("市")) {
-			city = getStringRAW.replace("市", "");
-		} else if (getStringRAW.includes("縣")) {
-			city = getStringRAW.replace("縣", "");
+		if (city.includes("市")) {
+			city = city.replace("市", "");
+		} else if (city.includes("縣")) {
+			city = city.replace("縣", "");
 		}
-		city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
 		console.log("City : " + city);
 		var dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
 		console.log("Dist : " + dist);
-		console.log("Clean String, Load Query");
-		getCurrentWeather(city, dist);
+		//console.log("Clean String, Load Query");
+		request({
+			uri: 'https://works.ioa.tw/weather/api/all.json',
+			method: 'GET',
+			timeut: '10000'
+		}, function(error, response, body) {
+			if (response.statusCode == 200) {
+				console.log('Access...'); // Print the response status code if a response was received
+				var fetchCt = JSON.parse(body);
+				for (i = 0; i < 22; i++) {
+					console.log(fetchCt[i].name);
+					console.log(fetchCt[i].towns.length);
+					var k=1;
+					for (j = 0; j < fetchCt[i].towns.length; j++) {
+						console.log(k);
+						console.log(fetchCt[i].towns[1].name);
+						k++;
+					}
+				}
+				//for (i = 0; i < 22; i++)
+				//console.log(fetchCt[0].towns[1].name);
+			} else {
+				console.log('Connect Api Error:', error); // Print the error if one occurred
+			}
+			console.log('Success Get Replied : End Weather Func');
+		});
+		//getCurrentWeather(city, dist);
 	} else {
 		console.log('invalid : need spec char');
 	}
