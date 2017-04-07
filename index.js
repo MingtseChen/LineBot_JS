@@ -8,24 +8,6 @@ var bot = linebot({
 });
 
 //start
-/*
-setTimeout(function(){
-    var userId = 'U9539bade81b0b8581173f6ab7bbe5b0c';
-    var sendMsg = '要發送的文字';
-    bot.push(userId,sendMsg);
-    console.log('send: '+sendMsg);
-},1000);*/
-/*
-bot.on('message', function(event) {
-	console.log('UID : ' + event.source.userId); //user id
-	event.source.profile().then(function(profile) {
-		console.log('User : ' + profile.displayName); //user name
-		event.reply('Hello' + profile.displayName);
-	}).catch(function(error) {
-		console.log('Get ID Error',error); //error
-	});
-});*/
-//var name = bot.getUserProfile(event.source.userId);
 
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
