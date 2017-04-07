@@ -8,7 +8,7 @@ var bot = linebot({
 });
 
 
-bot.on('user',function(event){
+bot.on('message',function(event){
 	console.log('UID' + event.source.userId);
 });
 
