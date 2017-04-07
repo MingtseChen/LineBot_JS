@@ -31,19 +31,19 @@ bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply(profile.displayName + ' : ' + event.message.text).then(function(data) {
 			console.log('=============================');
-			console.log('Success', data);
+			console.log('Reply Success');
 		}).catch(function(error) {
 			console.log('=============================');
-			console.log('Error', error);
+			console.log('Reply Error : ', error);
 		});
 		console.log("User Name : " + profile.displayName);
 		
 	}).catch(function(error) {
 		// error
 	});
-	console.log('=============================');
+	console.log('=========E=V=E=N=T======s====');
 	console.log(event);
-	console.log('=============================');
+	console.log('=========E=V=E=N=T======e====');
 });
 
 //end
