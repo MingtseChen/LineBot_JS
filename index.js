@@ -19,7 +19,6 @@ bot.on('message', function(event) {
 			console.log('=======E====N=====D==========');
 		});
 		console.log("User Name : " + profile.displayName);
-
 	}).catch(function(error) {
 		// error
 	});
@@ -30,8 +29,8 @@ bot.on('message', function(event) {
 
 //end
 
-//footer (port changer)
 
+//footer (port changer)
 const app = express();
 const linebotParser = bot.parser();
 app.post('/', linebotParser);
