@@ -24,7 +24,7 @@ bot.on('message', function(event) {
 		console.log('Get ID Error',error); //error
 	});
 });*/
-var name = bot.getUserProfile(event.source.userId);
+//var name = bot.getUserProfile(event.source.userId);
 
 bot.on('message', function(event) {
 	var uid = event.source.userId;
