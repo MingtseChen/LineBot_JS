@@ -29,8 +29,16 @@ bot.on('message', function(event) {
 
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
-		event.reply('Hello ' + profile.displayName);
+		event.reply(profile.displayName + ' : ' + event.message.text).then(function(data) {
+			//console.log('Success', data);
+		}).catch(function(error) {
+			//console.log('Error', error);
+		});
+		//event.reply('Hello ' + profile.displayName);
+		console.log('=============================');
 		console.log(profile.displayName);
+		console.log('Success', data);
+		console.log('=============================');
 	}).catch(function(error) {
 		// error
 	});
@@ -38,11 +46,7 @@ bot.on('message', function(event) {
 	//var name = event.source.profile;
 	//var name = event.getUserProfile(uid);
 	//console.log(event);
-	event.reply(' : ' + event.message.text).then(function(data) {
-		//console.log('Success', data);
-	}).catch(function(error) {
-		//console.log('Error', error);
-	});
+
 });
 
 //end
