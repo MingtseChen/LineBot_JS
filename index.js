@@ -36,16 +36,13 @@ bot.on('message', function(event) {
 			console.log('=============================');
 			console.log('Error', error);
 		});
-		console.log(profile.displayName);
-		console.log('=============================');
+		console.log("User Name : " + profile.displayName);
+		
 	}).catch(function(error) {
 		// error
 	});
-	var uid = event.source.userId;
-	//var name = event.source.profile;
-	//var name = event.getUserProfile(uid);
 	console.log(event);
-
+	console.log('=============================');
 });
 
 //end
