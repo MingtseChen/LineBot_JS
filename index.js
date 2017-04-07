@@ -17,6 +17,9 @@ var mWeather = '1. Weather';
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply(profile.displayName + ' : \n' + menu + mWeather /* + event.message.text*/ ).then(function(data) {
+			if(event.message.text == '1'){
+				event.reply('1');
+			}
 			//console.log('Reply Success');
 			//console.log('=======E====N=====D==========');
 		}).catch(function(error) {
@@ -33,13 +36,9 @@ bot.on('message', function(event) {
 });
 
 
-var DstringCity = '台北@中正區';
-var DstringCity2 = '台北dddddd@中正區';
-var DstringCity3 = '台北savavav@中正區';
+//var DstringCity = '台北@中正區';
 
 tools.inputTrim(DstringCity);
-tools.inputTrim(DstringCity2);
-
 
 //end
 
