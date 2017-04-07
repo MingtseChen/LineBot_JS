@@ -1,5 +1,9 @@
 var linebot = require('linebot');
 var express = require('express');
+
+const tools = require('./weather.js');
+let val = tools.weather();
+
 //config
 var bot = linebot({
 	channelId: '1508877129',
@@ -26,6 +30,15 @@ bot.on('message', function(event) {
 	console.log(event);
 	console.log('=========E=V=E=N=T===========');
 });
+
+
+var DstringCity = '台北@中正區';
+var DstringCity2 = '台北dddddd@中正區';
+var DstringCity3 = '台北savavav@中正區';
+
+tools.inputTrim(DstringCity);
+tools.inputTrim(DstringCity2);
+
 
 //end
 
