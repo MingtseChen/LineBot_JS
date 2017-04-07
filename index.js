@@ -6,18 +6,15 @@ var bot = linebot({
 	channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
 	channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
 });
-/*
-bot.on('message', function(event) {
-    console.log(event); //把收到訊息的 event 印出來看看
-});*/
-event.source.profile().then(function(profile) {
-	event.reply('Hello ' + profile.displayName);
-	console.log('UID', profile.displayName);
-}).catch(function(error) {
-	console.log('Error', error);
-});
+
 
 bot.on('message', function(event) {
+	event.source.profile().then(function(profile) {
+		event.reply('Hello ' + profile.displayName);
+		console.log('UID', profile.displayName);
+	}).catch(function(error) {
+		console.log('Error', error);
+	});
 	console.log(event);
 	event.reply(event.message.text).then(function(data) {
 		console.log('Success', data);
