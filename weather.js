@@ -4,9 +4,6 @@ var jsonQuery = require('json-query');
 var rplyString, city, dist;
 
 exports.weather = function() {
-	function callback(callback) {
-		callback(rplyString);
-	}
 	this.getCurrentWeather = function(inStream) {
 		if (this.inputTrim(inStream)) {
 			var dIndex;
