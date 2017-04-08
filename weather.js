@@ -35,12 +35,7 @@ exports.weather = function() {
 								//console.log(fetchCt[i].towns[k].name);
 								if (fetchCt[i].towns[k].name == dist) {
 									passflag = true;
-									//getCurrentWeather(city, dist);
 									getCurrentWeather(city, dist);
-									if (passflag) {
-										reply(uid);
-										console.log('send');
-									}
 								}
 								k++;
 							}
