@@ -48,10 +48,7 @@ bot.on('message', function(event) {
 //tools.raw('花蓮@富里鄉');
 
 tools.getCurrentWeather('花蓮縣@富里鄉', function() {
-	setInterval(function() {
-		console.log('-------------------------------------------------\n')
-		console.log(tools.reply());
-	}, 5000);
+	console.log(tools.reply());
 });
 /*
 	setInterval(function() {

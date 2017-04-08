@@ -17,7 +17,7 @@ exports.weather = function() {
 			request({
 				uri: 'https://works.ioa.tw/weather/api/all.json',
 				method: 'GET',
-				timeut: '10000'
+				timeut: '5000'
 			}, function(error, response, body) {
 				if (response.statusCode == 200) {
 					console.log('Getting Data Success', response && response.statusCode); // Print the response status code if a response was received
@@ -31,7 +31,7 @@ exports.weather = function() {
 						request({
 							uri: 'https://works.ioa.tw/weather/api/weathers/' + dIndex + '.json',
 							method: 'GET',
-							timeut: '10000'
+							timeut: '5000'
 						}, function(error, response, body) {
 							//console.log('Get Data Success', response && response.statusCode);
 							var data = JSON.parse(body);
@@ -53,10 +53,10 @@ exports.weather = function() {
 							rplyString = city + dist + "\n" +
 								resultTemp.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ '°C ' +
 								resultDesc + "\n" +
-								'降雨機率 : ' + resultRf + "%" + "\n" + resultAt;
-							console.log(rplyString);
-							console.log('call'); // Print the error if one occurred
-							(callback && typeof(callback) === "function") && callback();
+								'降雨機率 : ' + resultRf + "%" + "\n";
+							//console.log(rplyString);
+							//console.log('callback'); // Print the error if one occurred
+							callback && callback();
 							//console.log('Success Get Replied : End Weather Func\n', rplyString);
 						});
 					} catch (err) {
