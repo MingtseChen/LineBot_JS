@@ -1,8 +1,6 @@
 var request = require('request');
 var jsonQuery = require('json-query');
 
-
-
 var rplyString, city, dist;
 
 exports.weather = function() {
