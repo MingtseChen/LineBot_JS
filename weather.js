@@ -51,7 +51,7 @@ exports.weather = function() {
 								resultTemp.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ '°C ' +
 								resultDesc + "\n" +
 								'降雨機率 : ' + resultRf + "%";
-							console.log(rplyString);
+							//console.log(rplyString);
 							console.log('Success Get Replied : End Weather Func');
 						});
 					} catch (err) {
@@ -61,12 +61,6 @@ exports.weather = function() {
 					console.log('Connect Api Error:', error); // Print the error if one occurred
 				}
 			});
-
-			function callback(cb) {
-				callback(rplyString);
-				return rplyString;
-			}
-			return rplyString;
 		}
 	};
 
