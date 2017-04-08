@@ -1,17 +1,10 @@
 var request = require('request');
 var jsonQuery = require('json-query');
-var linebot = require('linebot');
-
-var bot = linebot({
-	channelId: '1508877129',
-	channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
-	channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
-});
 
 var rplyString;
 
 exports.weather = function() {
-	this.inputTrim = function(inStr, uid) {
+	this.inputTrim = function(inStr) {
 		var passflag = false;
 		var getStringRAW = inStr.trim();
 		var city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
@@ -120,12 +113,5 @@ function getCurrentWeather(ct, dt) {
 			console.log('Connect Api Error:', error); // Print the error if one occurred
 		}
 		console.log('Success Get Replied : End Weather Func');
-	});
-	//return rplyString;
-}
-
-function reply(uid) {
-	bot.on('message', function(event) {
-		event.push(uid, rplyString)
 	});
 }
