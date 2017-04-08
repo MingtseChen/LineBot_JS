@@ -1,6 +1,5 @@
 var linebot = require('linebot');
 var express = require('express');
-
 const tools = require('./weather.js');
 let val = tools.weather();
 
@@ -14,12 +13,11 @@ var bot = linebot({
 //start
 var menu = 'Hello Im Chatta U can ask me : \n';
 var mWeather = '1. Weather';
+
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply(profile.displayName + ' : \n' + menu + mWeather /* + event.message.text*/ ).then(function(data) {
-			if(event.message.text == '1'){
-				event.reply('1');
-			}
+			tools.inputTrim(event.message.text);
 			//console.log('Reply Success');
 			//console.log('=======E====N=====D==========');
 		}).catch(function(error) {
@@ -30,15 +28,14 @@ bot.on('message', function(event) {
 	}).catch(function(error) {
 		// error
 	});
-	console.log('=========E=V=E=N=T===========');
-	console.log(event);
-	console.log('=========E=V=E=N=T===========');
+	//console.log('=========E=V=E=N=T===========');
+	//console.log(event);
+	//console.log('=========E=V=E=N=T===========');
 });
 
 
 //var DstringCity = '台北@中正區';
-
-tools.inputTrim(DstringCity);
+tools.getCurrentWeather('花蓮@富里鄉');
 
 //end
 
