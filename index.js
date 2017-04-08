@@ -9,6 +9,16 @@ var bot = linebot({
 	channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
 	channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
 });
+//port changer
+const app = express();
+const linebotParser = bot.parser();
+app.post('/', linebotParser);
+
+//因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
+var server = app.listen(process.env.PORT || 8080, function() {
+	var port = server.address().port;
+	console.log("App now running on port : ", port);
+});
 
 //start
 var menu = 'Hello Im Chatta U can ask me : \n';
@@ -35,21 +45,13 @@ bot.on('message', function(event) {
 
 
 //var DstringCity = '台北@中正區';
+//tools.raw('花蓮@富里鄉');
 
-console.log(tools.getCurrentWeather('花蓮@富里鄉'));
-
-
-
-//end
-
-
-//footer (port changer)
-const app = express();
-const linebotParser = bot.parser();
-app.post('/', linebotParser);
-
-//因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
-var server = app.listen(process.env.PORT || 8080, function() {
-	var port = server.address().port;
-	console.log("App now running on port : ", port);
+tools.getCurrentWeather('花蓮縣@富里鄉', function() {
+	console.log(tools.reply());
 });
+/*
+	setInterval(function() {
+		console.log('-------------------------------------------------\n')
+		console.log(tools.reply());
+	}, 5000);*/
