@@ -44,6 +44,10 @@ exports.weather = function() {
 									passflag = true;
 									//getCurrentWeather(city, dist);
 									getCurrentWeather(city, dist);
+									if (passflag) {
+										reply(uid);
+										console.log('send');
+									}
 								}
 								k++;
 							}
@@ -57,10 +61,7 @@ exports.weather = function() {
 		} else {
 			console.log('invalid : need spec char');
 		}
-		if (passflag) {
-			reply(uid);
-			console.log('send');
-		}
+
 	};
 
 };
