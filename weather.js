@@ -51,7 +51,7 @@ exports.weather = function() {
 								resultDesc + "\n" +
 								'降雨機率 : ' + resultRf + "%";
 							//console.log(rplyString);
-							console.log('Success Get Replied : End Weather Func');
+							console.log('Success Get Replied : End Weather Func\n',rplyString);
 						});
 					} catch (err) {
 						console.log('Get Data Err \n ', err);
