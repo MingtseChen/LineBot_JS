@@ -14,6 +14,7 @@ var bot = linebot({
 //start
 var menu = 'Hello Im Chatta U can ask me : \n';
 var mWeather = '1. Weather';
+console.log(tools.inputTrim(event.message.text););
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply(profile.displayName + ' : \n' + menu + mWeather /* + event.message.text*/ ).then(function(data) {

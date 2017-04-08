@@ -2,6 +2,7 @@ var request = require('request');
 var jsonQuery = require('json-query');
 
 var rplyString;
+var a = 123;
 
 exports.weather = function() {
 	this.inputTrim = function(inStr) {
@@ -47,9 +48,9 @@ exports.weather = function() {
 				console.log('Query Status : ', passflag);
 			});
 		} else {
-			console.log('invalid : need spec char');
+			console.log('Invalid : Need Spec Char');
 		}
-
+		return a;
 	};
 
 };
