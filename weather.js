@@ -1,22 +1,30 @@
 var request = require('request');
 var jsonQuery = require('json-query');
+var linebot = require('linebot');
+
+var bot = linebot({
+	channelId: '1508877129',
+	channelSecret: 'fb5a231a8330f2438503cc5d4f9b2cc9',
+	channelAccessToken: '4L2aRBb34xjalpFoMdeaTiSABsn4p6r5/cvVTbBnnOfB3Lzfu79gwW/Q3BU4HMVSiUbVPax7Eq++UEguxptioW72UCqgHO3PW9gaUVVZnAuSArf6RYP4gUYa8SIe3RRDniLOSbsRuafMJ5mu7lSojwdB04t89/1O/w1cDnyilFU='
+});
+
 var rplyString;
 
 exports.weather = function() {
-	this.inputTrim = function(inStr) {
+	this.inputTrim = function(inStr, uid) {
 		var passflag = false;
 		var getStringRAW = inStr.trim();
 		var city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
 		if (getStringRAW.includes('@')) {
-			console.log("Raw : ", getStringRAW);
+			//console.log("Raw : ", getStringRAW);
 			if (city.includes("市")) {
 				city = city.replace("市", "");
 			} else if (city.includes("縣")) {
 				city = city.replace("縣", "");
 			}
-			console.log("City : " + city);
+			//console.log("City : " + city);
 			var dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
-			console.log("Dist : " + dist);
+			//console.log("Dist : " + dist);
 			//console.log("Clean String, Load Query");
 			request({
 				uri: 'https://works.ioa.tw/weather/api/all.json',
@@ -34,6 +42,7 @@ exports.weather = function() {
 								//console.log(fetchCt[i].towns[k].name);
 								if (fetchCt[i].towns[k].name == dist) {
 									passflag = true;
+									//getCurrentWeather(city, dist);
 									getCurrentWeather(city, dist);
 								}
 								k++;
@@ -49,8 +58,12 @@ exports.weather = function() {
 			console.log('invalid : need spec char');
 		}
 		return 0;
+		if (passflag) {
+			reply(uid);
+			console.log('send');
+		}
 	};
-	return 0;
+
 };
 
 function getCurrentWeather(ct, dt) {
@@ -99,7 +112,6 @@ function getCurrentWeather(ct, dt) {
 						resultDesc + "\n" +
 						'降雨機率 : ' + resultRf + "%\n" +
 						"Time : " + resultAt;
-					console.log(rplyString);
 				});
 			} catch (err) {
 				console.log('Get Data Err \n ', err);
@@ -109,5 +121,11 @@ function getCurrentWeather(ct, dt) {
 		}
 		console.log('Success Get Replied : End Weather Func');
 	});
-	return rplyString;
+	//return rplyString;
+}
+
+function reply(uid) {
+	bot.on('message', function(event) {
+		event.push(uid, rplyString)
+	});
 }

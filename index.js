@@ -17,7 +17,7 @@ var mWeather = '1. Weather';
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
 		event.reply(profile.displayName + ' : \n' + menu + mWeather /* + event.message.text*/ ).then(function(data) {
-				event.reply(tools.inputTrim(event.message.text));
+			tools.inputTrim(event.message.text, event.source.userId);
 			//console.log('Reply Success');
 			//console.log('=======E====N=====D==========');
 		}).catch(function(error) {
