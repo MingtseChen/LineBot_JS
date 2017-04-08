@@ -23,7 +23,6 @@ var server = app.listen(process.env.PORT || 8080, function() {
 //start
 var menu = 'Hello Im Chatta U can ask me : \n';
 var mWeather = '1. Weather';
-var 
 
 bot.on('message', function(event) {
 	event.source.profile().then(function(profile) {
