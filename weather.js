@@ -57,7 +57,6 @@ exports.weather = function() {
 		} else {
 			console.log('invalid : need spec char');
 		}
-		return 0;
 		if (passflag) {
 			reply(uid);
 			console.log('send');
