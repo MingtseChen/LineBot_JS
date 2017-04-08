@@ -22,7 +22,6 @@ exports.weather = function() {
 						dIndex = jsonQuery(query, {
 							data: data
 						}).value.id;
-
 						request({
 							uri: 'https://works.ioa.tw/weather/api/weathers/' + dIndex + '.json',
 							method: 'GET',
@@ -61,6 +60,7 @@ exports.weather = function() {
 					console.log('Connect Api Error:', error); // Print the error if one occurred
 				}
 			});
+			return rplyString;
 		}
 	};
 

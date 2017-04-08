@@ -35,7 +35,11 @@ bot.on('message', function(event) {
 
 
 //var DstringCity = '台北@中正區';
+
 console.log(tools.getCurrentWeather('花蓮@富里鄉'));
+
+
+
 //end
 
 
