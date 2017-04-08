@@ -1,7 +1,8 @@
 var request = require('request');
 var jsonQuery = require('json-query');
 
-var rplyString, city, dist;
+var rplyString = 'null',
+	city, dist;
 
 exports.weather = function() {
 	this.getCurrentWeather = function(inStream) {
@@ -47,13 +48,11 @@ exports.weather = function() {
 							// console.log(resultRf + "%");
 							// console.log(resultAt);
 							rplyString = city + dist + "\n" +
-								resultTemp.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ ' °C ' +
+								resultTemp.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ '°C ' +
 								resultDesc + "\n" +
-								'降雨機率 : ' + resultRf + "%\n" +
-								"Time : " + resultAt;
-							//console.log(rplyString);
+								'降雨機率 : ' + resultRf + "%";
+							console.log(rplyString);
 							console.log('Success Get Replied : End Weather Func');
-
 						});
 					} catch (err) {
 						console.log('Get Data Err \n ', err);
@@ -62,6 +61,12 @@ exports.weather = function() {
 					console.log('Connect Api Error:', error); // Print the error if one occurred
 				}
 			});
+
+			function callback(cb) {
+				callback(rplyString);
+				return rplyString;
+			}
+			return rplyString;
 		}
 	};
 
@@ -88,14 +93,15 @@ exports.weather = function() {
 				if (response.statusCode == 200) {
 					console.log('Access Data...'); // Print the response status code if a response was received
 					var fetchCt = JSON.parse(body);
+					console.log('Fetching...');
 					for (i = 0; i < 22; i++) {
-						//console.log(fetchCt[i].name);
 						var k = 0;
 						if (fetchCt[i].name == city) {
 							for (j = 0; j < fetchCt[i].towns.length; j++) {
 								//console.log(fetchCt[i].towns[k].name);
 								if (fetchCt[i].towns[k].name == dist) {
 									passflag = true;
+									console.log('Finish');
 								}
 								k++;
 							}
