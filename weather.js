@@ -1,12 +1,18 @@
 var request = require('request');
 var jsonQuery = require('json-query');
+var fs = require('fs');
 
 var rplyString = 'null',
 	city, dist;
 
+//request('https://works.ioa.tw/weather/api/all.json').pipe(fs.createWriteStream('local.json'))
+
 exports.weather = function() {
-	this.getCurrentWeather = function(inStream) {
-		if (this.inputTrim(inStream)) {
+	this.reply = function() {
+		return rplyString;
+	}
+	this.getCurrentWeather = function(rawData, callback) {
+		if (this.inputTrim(rawData)) {
 			var dIndex;
 			request({
 				uri: 'https://works.ioa.tw/weather/api/all.json',
@@ -29,18 +35,16 @@ exports.weather = function() {
 						}, function(error, response, body) {
 							//console.log('Get Data Success', response && response.statusCode);
 							var data = JSON.parse(body);
-							var resultDesc = jsonQuery('', {
+							var qObj = jsonQuery('', {
 								data: data
-							}).value.desc;
-							var resultTemp = jsonQuery('', {
-								data: data
-							}).value.temperature;
-							var resultRf = jsonQuery('', {
-								data: data
-							}).value.rainfall;
-							var resultAt = jsonQuery('', {
-								data: data
-							}).value.at;
+							}).value;
+							var resultDesc = qObj.desc;
+							// var resultDesc = jsonQuery('', {
+							// 	data: data
+							// }).value.desc;
+							var resultTemp = qObj.temperature;
+							var resultRf = qObj.rainfall;
+							var resultAt = qObj.at;
 							// console.log(ct + dt);
 							// console.log(resultDesc);
 							// console.log(resultTemp.slice(0, 2) + "~" + resultTemp.slice(2) + " C");
@@ -49,9 +53,11 @@ exports.weather = function() {
 							rplyString = city + dist + "\n" +
 								resultTemp.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ '°C ' +
 								resultDesc + "\n" +
-								'降雨機率 : ' + resultRf + "%";
-							//console.log(rplyString);
-							console.log('Success Get Replied : End Weather Func\n',rplyString);
+								'降雨機率 : ' + resultRf + "%" + "\n" + resultAt;
+							console.log(rplyString);
+							console.log('call'); // Print the error if one occurred
+							(callback && typeof(callback) === "function") && callback();
+							//console.log('Success Get Replied : End Weather Func\n', rplyString);
 						});
 					} catch (err) {
 						console.log('Get Data Err \n ', err);
@@ -60,23 +66,23 @@ exports.weather = function() {
 					console.log('Connect Api Error:', error); // Print the error if one occurred
 				}
 			});
-			return rplyString;
+			//return rplyString;
 		}
 	};
 
 	this.inputTrim = function(inStr) {
 		var passflag = false;
-		var getStringRAW = inStr.trim();
-		city = getStringRAW.slice(0, getStringRAW.indexOf("@"));
-		if (getStringRAW.includes('@')) {
-			console.log("Raw : ", getStringRAW);
+		this.inStr = inStr.trim();
+		city = this.inStr.slice(0, this.inStr.indexOf("@"));
+		if (this.inStr.includes('@')) {
+			console.log("Raw : ", this.inStr);
 			if (city.includes("市")) {
 				city = city.replace("市", "");
 			} else if (city.includes("縣")) {
 				city = city.replace("縣", "");
 			}
 			//console.log("City : " + city);
-			dist = getStringRAW.slice(getStringRAW.indexOf("@") + 1);
+			dist = this.inStr.slice(this.inStr.indexOf("@") + 1);
 			//console.log("Dist : " + dist);
 			//console.log("Clean String, Load Query");
 			request({

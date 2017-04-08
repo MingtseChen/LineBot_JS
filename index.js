@@ -45,5 +45,16 @@ bot.on('message', function(event) {
 
 
 //var DstringCity = '台北@中正區';
+//tools.raw('花蓮@富里鄉');
 
-console.log(tools.getCurrentWeather('花蓮@富里鄉'));
+tools.getCurrentWeather('花蓮縣@富里鄉', function() {
+	setInterval(function() {
+		console.log('-------------------------------------------------\n')
+		console.log(tools.reply());
+	}, 5000);
+});
+/*
+	setInterval(function() {
+		console.log('-------------------------------------------------\n')
+		console.log(tools.reply());
+	}, 5000);*/
