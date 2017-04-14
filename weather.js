@@ -10,7 +10,7 @@ var rplyString = 'null',
 exports.weather = function() {
 	this.reply = function() {
 		return rplyString;
-	}
+	};
 	this.getCurrentWeather = function(rawData, callback) {
 		if (this.inputTrim(rawData)) {
 			var dIndex;
