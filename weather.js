@@ -10,7 +10,7 @@ var rplyString = 'null',
 exports.weather = function() {
 	this.reply = function() {
 		return rplyString;
-	}
+	};
 	this.getCurrentWeather = function(rawData, callback) {
 		if (this.inputTrim(rawData)) {
 			var dIndex;
@@ -51,7 +51,7 @@ exports.weather = function() {
 							// console.log(resultRf + "%");
 							// console.log(resultAt);
 							rplyString = city + dist + "\n" +
-								resultTemp.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ '°C ' +
+								resultTemp + /*.slice(0, 2) + /*" ~ " + resultTemp.slice(2) + */ '°C ' +
 								resultDesc + "\n" +
 								'降雨機率 : ' + resultRf + "%" + "\n";
 							//console.log(rplyString);
