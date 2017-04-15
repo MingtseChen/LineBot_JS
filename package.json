@@ -1,10 +1,9 @@
 {
-  "name": "tku-hubot",
+  "name": "Dr.Hu",
   "version": "1.0.0",
   "private": true,
   "author": "ChenMT <gene31105@gmail.com>",
-  "license": "ISC",
-  "description": "A simple helpful robot for your Company",
+  "description": "TKU Project",
   "dependencies": {
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.1",
@@ -25,11 +24,13 @@
   "engines": {
     "node": "0.10.x"
   },
-  "scripts": {
-    "start": "bin/hubot -a line-messaging"
-  },
   "bugs": {
     "url": "https://github.com/MingtseChen/LineBot_JS/issues"
   },
-  "homepage": "https://github.com/MingtseChen/LineBot_JS#readme"
+  "homepage": "https://github.com/MingtseChen/LineBot_JS#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MingtseChen/LineBot_JS.git"
+  },
+  "license": "ISC"
 }
