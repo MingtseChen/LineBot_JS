@@ -5,6 +5,7 @@
   "author": "ChenMT <gene31105@gmail.com>",
   "description": "TKU Project",
   "dependencies": {
+  	"cheerio": "^0.22.0",
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.6",
@@ -18,11 +19,17 @@
     "hubot-rules": "^0.1.1",
     "hubot-scripts": "^2.17.2",
     "hubot-shipit": "^0.2.0",
+    "iconv-lite": "^0.4.15",
+    "lodash": "^4.17.2",
     "json-query": "^2.2.2",
+    "parent-require": "^1.0.0",
     "request": "^2.81.0"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": ">=6.0"
+  },
+  "devDependencies": {
+    "coffee-script": ">=1.2.0"
   },
   "bugs": {
     "url": "https://github.com/MingtseChen/LineBot_JS/issues"
@@ -32,5 +39,5 @@
     "type": "git",
     "url": "git+https://github.com/MingtseChen/LineBot_JS.git"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
